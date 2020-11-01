@@ -3,7 +3,17 @@ import urllib.request
 import datetime
 
 def read():
-    stats = {'time': [], 'intensive_care': [], 'hospitalizations': []}
+    stats = {
+        'time': [], 
+        'intensive_care': [], 
+        'hospitalizations': [], 
+        'last_total_screening': "", 
+        'last_positive_cases': "", 
+        'percetage_screening': "",
+        'last_ic' : "",
+        'last_ic_var': "",
+        'last_h_var': ""
+    }
     with urllib.request.urlopen("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json") as url:
         response = url.read()
         data = json.loads(response.decode('utf-8'))
@@ -14,4 +24,11 @@ def read():
             stats['intensive_care'].append(int(dic['terapia_intensiva']))
             stats['time'].append(time[0])
             i = i + 1
+        len_data = len(data) -1
+        stats['last_ic_var'] = int(data[len_data]['terapia_intensiva']) - int(data[len_data - 1]['terapia_intensiva'])
+        stats['last_h_var'] = int(data[len_data]['ricoverati_con_sintomi']) - int(data[len_data - 1]['ricoverati_con_sintomi'])
+        stats['last_total_screening'] = int(data[len_data]['tamponi']) - int(data[len_data-1]['tamponi'])
+        stats['last_ic'] = int(data[len_data]['terapia_intensiva'])
+        stats['last_positive_cases'] = int(data[len_data]['nuovi_positivi'])
+        stats['percetage_screening'] = int(data[len_data]['nuovi_positivi']) / stats['last_total_screening'] * 100
     return stats
