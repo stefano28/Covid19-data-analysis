@@ -13,3 +13,6 @@ def pol(x, y):
         'q': q
     }
     return f
+
+def pol_just_slope(x, y):
+    return pol(x,y)['m']

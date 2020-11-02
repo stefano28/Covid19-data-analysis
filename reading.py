@@ -32,3 +32,17 @@ def read():
         stats['last_positive_cases'] = int(data[len_data]['nuovi_positivi'])
         stats['percetage_screening'] = round(int(data[len_data]['nuovi_positivi']) / stats['last_total_screening'] * 100, 2)
     return stats
+
+def read_slope():
+    stats = {
+        'date': [], 
+        'slope_ic': [], 
+        'slope_h': []
+    }
+    with open('slope.json') as json_file: 
+        data = json.load(json_file)
+        for dic in data:
+            stats['slope_h'].append(int(dic['slope_h']))
+            stats['slope_ic'].append(int(dic['slope_ic']))
+            stats['date'].append(dic['date'])
+    return stats

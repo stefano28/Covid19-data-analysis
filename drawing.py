@@ -5,6 +5,7 @@ from scipy.optimize import curve_fit
 import numpy as np
 import matplotlib.pyplot as plt
 import fitting
+import writing
 
 def draw_chart_1(stats):
     fig = go.Figure()
@@ -90,11 +91,16 @@ def draw_chart_3(stats):
         intensive_care_last_week.append(intensive_care_total[i])
         hospitalizations_last_week.append(hospitalizations_total[i])
 
-    f = fitting.pol(disc_time, hospitalizations_last_week)
-    pol_x = f['x']
-    pol_y = []
-    for i in f['x']:
-        pol_y.append(f['x'][i]*f['m'] + f['q'])
+    f_h = fitting.pol(disc_time, hospitalizations_last_week)
+    f_ic = fitting.pol(disc_time, intensive_care_last_week)
+    result_h = []
+    result_ic = []
+
+    for i in f_h['x']:
+        result_h.append(f_h['x'][i]*f_h['m'] + f_h['q'])
+
+    for i in f_ic['x']:
+        result_ic.append(f_ic['x'][i]*f_ic['m'] + f_ic['q'])
 
     fig.add_trace(go.Scatter(
         x=time_last_week,
@@ -112,12 +118,62 @@ def draw_chart_3(stats):
     ))
     fig.add_trace(go.Scatter(
         x= time_last_week,
-        y = pol_y,
+        y = result_h,
         mode='lines',
-        name='Trendline ricoveri'
+        name= 'y = ' + str(round(f_h['m'])) + 'x ' + '+ ' + str(round(f_h['q'])),
+        line=dict(
+                color='red', 
+                width=4, 
+                dash='dot'
+            )
+    ))
+    fig.add_trace(go.Scatter(
+        x= time_last_week,
+        y = result_ic,
+        mode='lines',
+        name= 'y = ' + str(round(f_ic['m'])) + 'x ' + '+ ' + str(round(f_ic['q'])),
+        line=dict(
+                color='blue', 
+                width=4, 
+                dash='dot'
+            )
     ))
     fig.update_layout(
-        title = "Situazione ospedaliera Italiana nell'ultimo mese",
+        title = "Situazione ospedaliera Italiana negli ultimi 7 giorni",
+        xaxis_title = 'Tempo',
+        yaxis_title = 'Ricoveri',
+        font=dict(
+            size=15,
+        )
+    )
+
+    writing.update(time_total[len(time_total)-1],f_ic['m'],f_h['m'])
+    return fig
+
+def draw_chart_4(stats):
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x= stats['date'],
+        y = stats['slope_h'],
+        mode='lines',
+        name= 'Derivata dei ricoverati',
+        line=dict(
+                color='red', 
+                width=4, 
+            )
+    ))
+    fig.add_trace(go.Scatter(
+        x= stats['date'],
+        y = stats['slope_ic'],
+        mode='lines',
+        name= 'Derivata terapie intensive',
+        line=dict(
+                color='blue', 
+                width=4, 
+            )
+    ))
+    fig.update_layout(
+        title = "Andamento derivate",
         xaxis_title = 'Tempo',
         yaxis_title = 'Ricoveri',
         font=dict(

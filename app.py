@@ -9,10 +9,12 @@ import drawing
 import components
 
 stats = reading.read()
+stats_slope = reading.read_slope()
 
 chart_1 = drawing.draw_chart_1(stats)
 chart_2 = drawing.draw_chart_2(stats)
 chart_3 = drawing.draw_chart_3(stats)
+chart_4 = drawing.draw_chart_4(stats_slope)
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = 'Covid19 data analysis' 
@@ -75,6 +77,7 @@ app.layout = html.Div(
                         {'label': 'Da inizio epidemia', 'value': 'GEN'},
                         {'label': 'Ultimo mese', 'value': 'LM'},
                         {'label': 'Ultima settimana', 'value': 'LW'},
+                        {'label': 'Andamento derivate', 'value': 'DD'},
                     ],
                     searchable=False,
                     value='GEN',
@@ -90,7 +93,7 @@ app.layout = html.Div(
         ),
         html.Div(
             id = 'main-chart'
-            )
+        ),
         ]
     )
 
@@ -103,6 +106,8 @@ def update_output(value):
         chart = chart_2
     elif value == "LW":
         chart = chart_3
+    elif value == "DD":
+        chart = chart_4
     return dcc.Graph(
         figure=chart,
         style={
