@@ -30,5 +30,5 @@ def read():
         stats['last_total_screening'] = int(data[len_data]['tamponi']) - int(data[len_data-1]['tamponi'])
         stats['last_ic'] = int(data[len_data]['terapia_intensiva'])
         stats['last_positive_cases'] = int(data[len_data]['nuovi_positivi'])
-        stats['percetage_screening'] = int(data[len_data]['nuovi_positivi']) / stats['last_total_screening'] * 100
+        stats['percetage_screening'] = round(int(data[len_data]['nuovi_positivi']) / stats['last_total_screening'] * 100, 2)
     return stats

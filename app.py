@@ -12,9 +12,10 @@ stats = reading.read()
 
 chart_1 = drawing.draw_chart_1(stats)
 chart_2 = drawing.draw_chart_2(stats)
+chart_3 = drawing.draw_chart_3(stats)
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-
+app.title = 'Covid19 data analysis' 
 app.layout = html.Div(
     children=[
         html.H1(
@@ -34,7 +35,7 @@ app.layout = html.Div(
             dbc.Col(
                 dbc.Row(
                     [
-                        dbc.Col(dbc.Card(components.card("% Positivi su tamponi", stats["percetage_screening"]), color="dark", inverse=True)),
+                        dbc.Col(dbc.Card(components.card("Positivi su tamponi", str(stats["percetage_screening"]) + "%"), color="dark", inverse=True)),
                         dbc.Col(dbc.Card(components.card("Nuovi pazienti ricoverati", stats["last_h_var"]), color="dark", inverse=True)),
                         dbc.Col(dbc.Card(components.card("Nuovi pazienti in terapia intensiva", stats["last_ic_var"]), color="dark", inverse=True))
 
@@ -52,7 +53,7 @@ app.layout = html.Div(
             dbc.Col(
                 [
                 html.H6(
-                    children = "Terapie intensive occupate (solo da Covid)",
+                    children = "Terapie intensive occupate (solo pazienti Covid)",
                     style = {
                         'margin-top' : '3rem',
                         'margin-bottom' : '1.5rem'
@@ -71,8 +72,9 @@ app.layout = html.Div(
                 dcc.Dropdown(
                     id= 'chart-dropdown',
                     options=[
-                        {'label': 'Situazione generale', 'value': 'GEN'},
-                        {'label': 'Ultimo mese', 'value': 'CU'},
+                        {'label': 'Da inizio epidemia', 'value': 'GEN'},
+                        {'label': 'Ultimo mese', 'value': 'LM'},
+                        {'label': 'Ultima settimana', 'value': 'LW'},
                     ],
                     searchable=False,
                     value='GEN',
@@ -97,8 +99,10 @@ app.layout = html.Div(
     [dash.dependencies.Input('chart-dropdown', 'value')])
 def update_output(value):
     chart = chart_1
-    if value == "CU":
+    if value == "LM":
         chart = chart_2
+    elif value == "LW":
+        chart = chart_3
     return dcc.Graph(
         figure=chart,
         style={
