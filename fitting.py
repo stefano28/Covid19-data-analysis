@@ -16,3 +16,6 @@ def pol(x, y):
 
 def pol_just_slope(x, y):
     return pol(x,y)['m']
+
+def pol_just_ins(x, y):
+    return pol(x,y)['q']

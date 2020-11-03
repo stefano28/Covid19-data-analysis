@@ -146,8 +146,6 @@ def draw_chart_3(stats):
             size=15,
         )
     )
-
-    writing.update(time_total[len(time_total)-1],f_ic['m'],f_h['m'])
     return fig
 
 def draw_chart_4(stats):
@@ -155,22 +153,14 @@ def draw_chart_4(stats):
     fig.add_trace(go.Scatter(
         x= stats['date'],
         y = stats['slope_h'],
-        mode='lines',
+        mode='lines+markers',
         name= 'Derivata dei ricoverati',
-        line=dict(
-                color='red', 
-                width=4, 
-            )
     ))
     fig.add_trace(go.Scatter(
         x= stats['date'],
         y = stats['slope_ic'],
-        mode='lines',
+        mode='lines+markers',
         name= 'Derivata terapie intensive',
-        line=dict(
-                color='blue', 
-                width=4, 
-            )
     ))
     fig.update_layout(
         title = "Andamento derivate",

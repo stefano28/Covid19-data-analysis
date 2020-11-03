@@ -7,10 +7,11 @@ import pandas as pd
 import reading
 import drawing
 import components
+import loading
 
 stats = reading.read()
 stats_slope = reading.read_slope()
-
+loading.load()
 chart_1 = drawing.draw_chart_1(stats)
 chart_2 = drawing.draw_chart_2(stats)
 chart_3 = drawing.draw_chart_3(stats)
@@ -94,6 +95,16 @@ app.layout = html.Div(
         html.Div(
             id = 'main-chart'
         ),
+        dbc.Row(
+            dbc.Col(
+                    components.table()
+                ),
+                style = {
+                    'margin-top' : '5rem',
+                    'margin-left' : '10rem',
+                    'margin-right' : '10rem',
+                }
+            )
         ]
     )
 
@@ -118,4 +129,4 @@ def update_output(value):
 ),
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)

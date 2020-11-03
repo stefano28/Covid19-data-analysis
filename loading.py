@@ -10,35 +10,34 @@ def load():
     time_last_month = []
     intensive_care_last_month = []
     hospitalizations_last_month = []
+    time_last_month_back = []
+
+    count = 0
+    tme = 0
+    m_ic = []
+    q_ic = []
+    m_h = []
+    q_h = []
+
+    inv = [0, 1, 2, 3, 4, 5, 6]
 
     for i in range(len(time_total) - 30, len(time_total)): 
-        time_last_month.append(time_total[i])
+        time_last_month.append(tme)
         intensive_care_last_month.append(intensive_care_total[i])
         hospitalizations_last_month.append(hospitalizations_total[i])
+        count += 1
+        tme += 1
+        if(count > 6):
+            time_last_month_back.append(time_total[i])
+            m_ic.append(fitting.pol_just_slope(time_last_month, intensive_care_last_month))
+            q_ic.append(fitting.pol_just_ins(inv, intensive_care_last_month))
+            m_h.append(fitting.pol_just_slope(time_last_month, hospitalizations_last_month))
+            q_h.append(fitting.pol_just_ins(inv, hospitalizations_last_month))
+            time_last_month.pop(0)
+            intensive_care_last_month.pop(0)
+            hospitalizations_last_month.pop(0)
+    
+    writing.restore()
 
-    h_slope = []
-    ic_slope = []
-    time = []
-    j = 0
-
-
-    for i in range(0, len(intensive_care_last_month)):
-        ic_slope.append(intensive_care_last_month[i])
-        time.append(i)
-        #ic_slope.append(fitting.pol_just_slope(time, ic))
-    ic_slope.append(fitting.pol_just_slope(time, ic))
-    print(ic_slope)
-"""
-    j = 0
-
-    for i in hospitalizations_last_month:
-        h_slope.append(fitting.pol_just_slope(i, time_last_month[j]))
-        j += 1
-            j = 0
-
-    while(j < 30):
-        writing.write(time_last_month[j], ic_slope[j], h_slope[j])
-        j += 1
-"""
-
-load()
+    for i in range(0, len(m_ic)):
+        writing.update(time_last_month_back[i], m_ic[i], q_ic[i], m_h[i], q_h[i])

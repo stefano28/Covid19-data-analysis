@@ -36,13 +36,17 @@ def read():
 def read_slope():
     stats = {
         'date': [], 
-        'slope_ic': [], 
-        'slope_h': []
+        'slope_ic': [],
+        'ins_ic': [],
+        'slope_h': [],
+        'ins_h': []
     }
     with open('slope.json') as json_file: 
         data = json.load(json_file)
         for dic in data:
             stats['slope_h'].append(int(dic['slope_h']))
+            stats['ins_h'].append(int(dic['ins_h']))
+            stats['ins_ic'].append(int(dic['ins_ic']))
             stats['slope_ic'].append(int(dic['slope_ic']))
             stats['date'].append(dic['date'])
     return stats
