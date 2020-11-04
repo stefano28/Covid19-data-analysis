@@ -34,17 +34,25 @@ app.layout = html.Div(
         ),
         dbc.Row(
             dbc.Col(
-                
-                dbc.Row(
-                    [
-                        dbc.Col(dbc.Card(components.card("Positivi su tamponi", str(stats["percetage_screening"]) + "%"), color="dark", inverse=True)),
-                        dbc.Col(dbc.Card(components.card("Nuovi positivi", stats["last_positive_cases"]), color="dark", inverse=True)),
-                        dbc.Col(dbc.Card(components.card("Nuovi pazienti ricoverati", stats["last_h_var"]), color="dark", inverse=True)),
-                        dbc.Col(dbc.Card(components.card("Nuovi pazienti in terapia intensiva", stats["last_ic_var"]), color="dark", inverse=True))
+                [
+                    html.H6(
+                        children = "Dati del " + str(stats['time_ita'][len(stats['time_ita'])-1]),
+                        style = {
+                            'margin-top' : '3rem',
+                            'margin-bottom' : '1.5rem'
+                        }
+                    ),
+                    dbc.Row(
+                        [
+                            dbc.Col(dbc.Card(components.card("Positivi su tamponi", str(stats["percetage_screening"]) + "%"), color="dark", inverse=True)),
+                            dbc.Col(dbc.Card(components.card("Nuovi positivi", stats["last_positive_cases"]), color="dark", inverse=True)),
+                            dbc.Col(dbc.Card(components.card("Nuovi pazienti ricoverati", stats["last_h_var"]), color="dark", inverse=True)),
+                            dbc.Col(dbc.Card(components.card("Nuovi pazienti in terapia intensiva", stats["last_ic_var"]), color="dark", inverse=True))
 
-                    ],
-                    className="mb-4",
-                ),
+                        ],
+                        className="mb-4",
+                    ),
+                ]
             ),
             style = {
                 'margin-top' : '5rem',
@@ -76,8 +84,8 @@ app.layout = html.Div(
                     id= 'chart-dropdown',
                     options=[
                         {'label': 'Da inizio epidemia', 'value': 'GEN'},
-                        {'label': 'Ultimo mese', 'value': 'LM'},
-                        {'label': 'Ultima settimana', 'value': 'LW'},
+                        {'label': 'Ultimi 30 giorni', 'value': 'LM'},
+                        {'label': 'Ultimi 7 giorni', 'value': 'LW'},
                         {'label': 'Andamento derivate', 'value': 'DD'},
                     ],
                     searchable=False,
@@ -97,7 +105,16 @@ app.layout = html.Div(
         ),
         dbc.Row(
             dbc.Col(
+                [
+                    html.H6(
+                        children = "Previsioni",
+                        style = {
+                            'margin-top' : '3rem',
+                            'margin-bottom' : '1.5rem'
+                        }
+                    ),
                     components.table()
+                ]
                 ),
                 style = {
                     'margin-top' : '5rem',

@@ -38,8 +38,11 @@ def table():
     row2 = html.Tr([html.Td("Dopo domani"), html.Td(m_h*8+q_h), html.Td(m_ic*8+q_ic)])
     row3 = html.Tr([html.Td("3 giorni"), html.Td(m_h*9+q_h), html.Td(m_ic*9+q_ic)])
     row4 = html.Tr([html.Td("4 giorni"), html.Td(m_h*10+q_h), html.Td(m_ic*10+q_ic)])
+    row5 = html.Tr([html.Td("5 giorni"), html.Td(m_h*11+q_h), html.Td(m_ic*11+q_ic)])
+    row6 = html.Tr([html.Td("6 giorni"), html.Td(m_h*12+q_h), html.Td(m_ic*12+q_ic)])
+    row7 = html.Tr([html.Td("7 giorni"), html.Td(m_h*13+q_h), html.Td(m_ic*13+q_ic)])
 
-    table_body = [html.Tbody([row1, row2, row3, row4])]
+    table_body = [html.Tbody([row1, row2, row3, row4, row5, row6, row7])]
 
     table = dbc.Table(table_header + table_body, bordered=True)
     return table

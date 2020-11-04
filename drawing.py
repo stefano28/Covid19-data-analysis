@@ -18,7 +18,7 @@ def draw_chart_1(stats):
         name = 'Ricoverati normali',
     ))
     fig.update_layout(
-        title = 'Situazione ospedaliera Italiana da inizio epidemia',
+        title = 'Situazione ospedaliera da inizio epidemia',
         xaxis_title = 'Tempo',
         yaxis_title = 'Ricoveri',
         font=dict(
@@ -57,7 +57,7 @@ def draw_chart_2(stats):
         name = 'Ricoverati normali',
     ))
     fig.update_layout(
-        title = "Situazione ospedaliera Italiana nell'ultimo mese",
+        title = "Situazione ospedaliera negli ultimi 30 giorni",
         xaxis_title = 'Tempo',
         yaxis_title = 'Ricoveri',
         font=dict(
@@ -97,13 +97,6 @@ def draw_chart_3(stats):
         result_ic.append(f_ic['x'][i]*f_ic['m'] + f_ic['q'])
 
     fig.add_trace(go.Scatter(
-        x=time_last_week,
-        y=intensive_care_last_week,
-        marker = dict(size=9),
-        mode = 'markers',
-        name = 'Terapie intensive'
-        ))
-    fig.add_trace(go.Scatter(
         x = time_last_week,
         y = hospitalizations_last_week,
         marker = dict(size=9),
@@ -111,12 +104,19 @@ def draw_chart_3(stats):
         name = 'Ricoverati normali',
     ))
     fig.add_trace(go.Scatter(
+        x=time_last_week,
+        y=intensive_care_last_week,
+        marker = dict(size=9),
+        mode = 'markers',
+        name = 'Terapie intensive'
+        ))
+    fig.add_trace(go.Scatter(
         x= time_last_week,
         y = result_h,
         mode='lines',
         name= 'y = ' + str(round(f_h['m'])) + 'x ' + '+ ' + str(round(f_h['q'])),
         line=dict(
-                color='red', 
+                color='blue', 
                 width=4, 
                 dash='dot'
             )
@@ -127,7 +127,7 @@ def draw_chart_3(stats):
         mode='lines',
         name= 'y = ' + str(round(f_ic['m'])) + 'x ' + '+ ' + str(round(f_ic['q'])),
         line=dict(
-                color='blue', 
+                color='red', 
                 width=4, 
                 dash='dot'
             )
@@ -157,7 +157,7 @@ def draw_chart_4(stats):
         name= 'Derivata terapie intensive',
     ))
     fig.update_layout(
-        title = "Andamento derivate",
+        title = "Andamento derivate negli ultimi 30 giorni",
         xaxis_title = 'Tempo',
         yaxis_title = 'Pendenza',
         font=dict(

@@ -2,7 +2,8 @@ import urllib, json
 
 def read():
     stats = {
-        'time': [], 
+        'time': [],
+        'time_ita': [],
         'intensive_care': [], 
         'hospitalizations': [], 
         'last_total_screening': "", 
@@ -21,6 +22,8 @@ def read():
             stats['hospitalizations'].append(int(dic['ricoverati_con_sintomi']))
             stats['intensive_care'].append(int(dic['terapia_intensiva']))
             stats['time'].append(time[0])
+            time_ita = str(time[0]).split('-')
+            stats['time_ita'].append(time_ita[2] + '/' + time_ita[1] + '/' + time_ita[0])
             i = i + 1
         len_data = len(data) -1
         stats['last_ic_var'] = int(data[len_data]['terapia_intensiva']) - int(data[len_data - 1]['terapia_intensiva'])
