@@ -2,8 +2,6 @@ import dash
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-import plotly.express as px
-import pandas as pd
 import reading
 import drawing
 import components
@@ -36,9 +34,11 @@ app.layout = html.Div(
         ),
         dbc.Row(
             dbc.Col(
+                
                 dbc.Row(
                     [
                         dbc.Col(dbc.Card(components.card("Positivi su tamponi", str(stats["percetage_screening"]) + "%"), color="dark", inverse=True)),
+                        dbc.Col(dbc.Card(components.card("Nuovi positivi", stats["last_positive_cases"]), color="dark", inverse=True)),
                         dbc.Col(dbc.Card(components.card("Nuovi pazienti ricoverati", stats["last_h_var"]), color="dark", inverse=True)),
                         dbc.Col(dbc.Card(components.card("Nuovi pazienti in terapia intensiva", stats["last_ic_var"]), color="dark", inverse=True))
 
@@ -129,4 +129,4 @@ def update_output(value):
 ),
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)

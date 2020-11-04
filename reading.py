@@ -1,6 +1,4 @@
 import urllib, json
-import urllib.request
-import datetime
 
 def read():
     stats = {

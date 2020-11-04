@@ -1,11 +1,5 @@
-import plotly.express as px
-import pandas as pd
 import plotly.graph_objects as go
-from scipy.optimize import curve_fit
-import numpy as np
-import matplotlib.pyplot as plt
 import fitting
-import writing
 
 def draw_chart_1(stats):
     fig = go.Figure()
@@ -165,7 +159,7 @@ def draw_chart_4(stats):
     fig.update_layout(
         title = "Andamento derivate",
         xaxis_title = 'Tempo',
-        yaxis_title = 'Ricoveri',
+        yaxis_title = 'Pendenza',
         font=dict(
             size=15,
         )
