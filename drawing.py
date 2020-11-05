@@ -97,13 +97,6 @@ def draw_chart_3(stats):
         result_ic.append(f_ic['x'][i]*f_ic['m'] + f_ic['q'])
 
     fig.add_trace(go.Scatter(
-        x = time_last_week,
-        y = hospitalizations_last_week,
-        marker = dict(size=9),
-        mode = 'markers',
-        name = 'Ricoverati normali',
-    ))
-    fig.add_trace(go.Scatter(
         x=time_last_week,
         y=intensive_care_last_week,
         marker = dict(size=9),
@@ -111,12 +104,19 @@ def draw_chart_3(stats):
         name = 'Terapie intensive'
         ))
     fig.add_trace(go.Scatter(
+        x = time_last_week,
+        y = hospitalizations_last_week,
+        marker = dict(size=9),
+        mode = 'markers',
+        name = 'Ricoverati normali',
+    ))
+    fig.add_trace(go.Scatter(
         x= time_last_week,
         y = result_h,
         mode='lines',
         name= 'y = ' + str(round(f_h['m'])) + 'x ' + '+ ' + str(round(f_h['q'])),
         line=dict(
-                color='blue', 
+                color='red', 
                 width=4, 
                 dash='dot'
             )
@@ -127,7 +127,7 @@ def draw_chart_3(stats):
         mode='lines',
         name= 'y = ' + str(round(f_ic['m'])) + 'x ' + '+ ' + str(round(f_ic['q'])),
         line=dict(
-                color='red', 
+                color='blue', 
                 width=4, 
                 dash='dot'
             )
@@ -146,15 +146,15 @@ def draw_chart_4(stats):
     fig = go.Figure()
     fig.add_trace(go.Scatter(
         x= stats['date'],
-        y = stats['slope_h'],
-        mode='lines+markers',
-        name= 'Derivata dei ricoverati',
-    ))
-    fig.add_trace(go.Scatter(
-        x= stats['date'],
         y = stats['slope_ic'],
         mode='lines+markers',
         name= 'Derivata terapie intensive',
+    ))
+    fig.add_trace(go.Scatter(
+        x= stats['date'],
+        y = stats['slope_h'],
+        mode='lines+markers',
+        name= 'Derivata ricoverati normali',
     ))
     fig.update_layout(
         title = "Andamento derivate negli ultimi 30 giorni",
