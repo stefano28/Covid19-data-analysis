@@ -7,6 +7,8 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to nstall dependen
 
 ```bash
 pip install plotly
+pip install numby
+pip install dash_bootstrap_components
 pip install dash
 ```
 
