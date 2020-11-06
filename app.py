@@ -121,7 +121,17 @@ app.layout = html.Div(
                     'margin-left' : '10rem',
                     'margin-right' : '10rem',
                 }
-            )
+            ),
+        dbc.Row(
+            dbc.Col(
+                html.Iframe(title="Posti di terapia intensiva ogni 100mila abitanti", style = {'height': '802px','min-width': '100%','border': 'none'}, src=f'https://datawrapper.dwcdn.net/7qNQd/1/'),
+            ),
+            style = {
+                    'margin-top' : '5rem',
+                    'margin-left' : '10rem',
+                    'margin-right' : '10rem',
+            }
+        )
         ]
     )
 
