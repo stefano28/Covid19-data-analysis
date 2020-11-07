@@ -1,6 +1,6 @@
 import urllib, json
 
-def read():
+def read_all():
     stats = {
         'time': [],
         'time_ita': [],
@@ -51,3 +51,14 @@ def read_slope():
             stats['slope_ic'].append(int(dic['slope_ic']))
             stats['date'].append(dic['date'])
     return stats
+
+def read_regions():
+    with urllib.request.urlopen("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni-latest.json") as url:
+        response = url.read()
+        data = json.loads(response.decode('utf-8'))
+        return data
+
+def read_regions_ic():
+    with open('intensive_care.json') as json_file: 
+        data = json.load(json_file)
+        return data

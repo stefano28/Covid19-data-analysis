@@ -1,0 +1,107 @@
+[
+    {
+        "nome": "Abruzzo",
+        "codice": 13,
+        "terapie_intensive": 126
+    },
+    {
+        "nome": "Basilicata",
+        "codice": 17,
+        "terapie_intensive": 73
+    },
+    {
+        "nome": "Calabria",
+        "codice": 18,
+        "terapie_intensive": 151
+    },
+    {
+        "nome": "Campania",
+        "codice": 15,
+        "terapie_intensive": 364
+    },
+    {
+        "nome": "Emilia-Romagna",
+        "codice": 8,
+        "terapie_intensive": 502
+    },
+    {
+        "nome": "Friuli-Venezia Giulia",
+        "codice": 6,
+        "terapie_intensive": 169
+    },
+    {
+        "nome": "Lazio",
+        "codice": 12,
+        "terapie_intensive": 690
+    },
+    {
+        "nome": "Liguria",
+        "codice": 7,
+        "terapie_intensive": 183
+    },
+    {
+        "nome": "Lombardia",
+        "codice": 3,
+        "terapie_intensive": 939
+    },
+    {
+        "nome": "Marche",
+        "codice": 11,
+        "terapie_intensive": 124
+    },
+    {
+        "nome": "Molise",
+        "codice": 14,
+        "terapie_intensive": 34
+    },
+    {
+        "nome": "Provincia Autonoma di Bolzano/Bozen",
+        "codice": 21,
+        "terapie_intensive": 51
+    },
+    {
+        "nome": "Provincia Autonoma di Trento",
+        "codice": 22,
+        "terapie_intensive": 53
+    },
+    {
+        "nome": "Piemonte",
+        "codice": 1,
+        "terapie_intensive": 345
+    },
+    {
+        "nome": "Puglia",
+        "codice": 16,
+        "terapie_intensive": 343
+    },
+    {
+        "nome": "Sardegna",
+        "codice": 20,
+        "terapie_intensive": 152
+    },
+    {
+        "nome": "Sicilia",
+        "codice": 19,
+        "terapie_intensive": 503
+    },
+    {
+        "nome": "Toscana",
+        "codice": 9,
+        "terapie_intensive": 385
+    },
+    {
+        "nome": "Umbria",
+        "codice": 10,
+        "terapie_intensive": 62
+    },
+    {
+        "nome": "Valle d'Aosta/Vallée d'Aoste",
+        "codice": 2,
+        "terapie_intensive": 18
+    },
+    {
+      "nome": "Veneto",
+      "codice": 5,
+      "terapie_intensive": 804
+    }
+  ]

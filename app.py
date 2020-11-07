@@ -7,13 +7,16 @@ import drawing
 import components
 import loading
 
-stats = reading.read()
+stats = reading.read_all()
+region_stats = reading.read_regions()
 stats_slope = reading.read_slope()
 loading.load()
 chart_1 = drawing.draw_chart_1(stats)
 chart_2 = drawing.draw_chart_2(stats)
 chart_3 = drawing.draw_chart_3(stats)
 chart_4 = drawing.draw_chart_4(stats_slope)
+loading.load_saturation(region_stats)
+#datawrapper_1 = drawing.draw_datawrapper_1(loading.load_saturation(region_stats))
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = 'Covid19 data analysis' 
@@ -124,7 +127,24 @@ app.layout = html.Div(
             ),
         dbc.Row(
             dbc.Col(
-                html.Iframe(title="Posti di terapia intensiva ogni 100mila abitanti", style = {'height': '802px','min-width': '100%','border': 'none'}, src=f'https://datawrapper.dwcdn.net/7qNQd/1/'),
+                [
+                    dcc.Dropdown(
+                        id= 'datawrapper-dropdown',
+                        options=[
+                            {'label': 'Saturazione regionali', 'value': 'STI'},
+                            {'label': 'Capacità regionali', 'value': 'GTI'},
+                        ],
+                        searchable=False,
+                        value='STI',
+                        style = {
+                            'width' : '20rem',
+                            'margin-bottom': '2rem'
+                        }
+                    ),
+                    html.Div(
+                        id = 'main-datawrapper'
+                    ),
+                ]
             ),
             style = {
                     'margin-top' : '5rem',
@@ -153,7 +173,17 @@ def update_output(value):
             'margin-right' : '10rem',
             'height' : '50rem'
         }
-),
+    ),
+
+@app.callback(
+    dash.dependencies.Output('main-datawrapper', 'children'),
+    [dash.dependencies.Input('datawrapper-dropdown', 'value')])
+def update_output(value):
+    if value == "STI":
+        return html.Iframe(title="Saturazione terapie intensive", style = {'height': '802px','min-width': '100%','border': 'none'}, src=f'https://datawrapper.dwcdn.net/n02gP/')   
+    if value == "GTI":
+        return html.Iframe(title="Posti di terapia intensiva ogni 100mila abitanti", style = {'height': '802px','min-width': '100%','border': 'none'}, src=f'https://datawrapper.dwcdn.net/7qNQd/1/')   
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)

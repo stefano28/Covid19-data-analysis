@@ -30,3 +30,8 @@ def restore():
         tmp = []
         json.dump(tmp,f)
 
+def write_sat(saturations):
+    f = open("saturations.txt", "w")
+    f.write("Name, Value\n")
+    for i in saturations:
+        f.write(i['name'] + ", " + str(i['saturation']) + "\n")
