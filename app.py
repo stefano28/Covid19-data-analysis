@@ -131,8 +131,8 @@ app.layout = html.Div(
                     dcc.Dropdown(
                         id= 'datawrapper-dropdown',
                         options=[
-                            {'label': 'Saturazione regionali', 'value': 'STI'},
-                            {'label': 'Capacità regionali', 'value': 'GTI'},
+                            {'label': 'Saturazione', 'value': 'STI'},
+                            {'label': 'Capacità sulla popolazione', 'value': 'GTI'},
                         ],
                         searchable=False,
                         value='STI',
@@ -186,4 +186,4 @@ def update_output(value):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)

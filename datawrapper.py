@@ -19,7 +19,7 @@ def update():
     }
 
     plaintext = f.read()
-
+    plaintext.encode('utf-8')
     response = requests.request("PUT", url, headers=headers, data=plaintext)
 
     publish()

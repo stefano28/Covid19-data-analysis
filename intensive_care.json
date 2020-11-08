@@ -2,7 +2,7 @@
     {
         "nome": "Abruzzo",
         "codice": 13,
-        "terapie_intensive": 126
+        "terapie_intensive": 148
     },
     {
         "nome": "Basilicata",
@@ -12,42 +12,42 @@
     {
         "nome": "Calabria",
         "codice": 18,
-        "terapie_intensive": 151
+        "terapie_intensive": 239
     },
     {
         "nome": "Campania",
         "codice": 15,
-        "terapie_intensive": 364
+        "terapie_intensive": 505
     },
     {
         "nome": "Emilia-Romagna",
         "codice": 8,
-        "terapie_intensive": 502
+        "terapie_intensive": 634
     },
     {
         "nome": "Friuli-Venezia Giulia",
         "codice": 6,
-        "terapie_intensive": 169
+        "terapie_intensive": 180
     },
     {
         "nome": "Lazio",
         "codice": 12,
-        "terapie_intensive": 690
+        "terapie_intensive": 847
     },
     {
         "nome": "Liguria",
         "codice": 7,
-        "terapie_intensive": 183
+        "terapie_intensive": 209
     },
     {
         "nome": "Lombardia",
         "codice": 3,
-        "terapie_intensive": 939
+        "terapie_intensive": 1036
     },
     {
         "nome": "Marche",
         "codice": 11,
-        "terapie_intensive": 124
+        "terapie_intensive": 143
     },
     {
         "nome": "Molise",
@@ -57,51 +57,51 @@
     {
         "nome": "Provincia Autonoma di Bolzano/Bozen",
         "codice": 21,
-        "terapie_intensive": 51
+        "terapie_intensive": 55
     },
     {
         "nome": "Provincia Autonoma di Trento",
         "codice": 22,
-        "terapie_intensive": 53
+        "terapie_intensive": 51
     },
     {
         "nome": "Piemonte",
         "codice": 1,
-        "terapie_intensive": 345
+        "terapie_intensive": 575
     },
     {
         "nome": "Puglia",
         "codice": 16,
-        "terapie_intensive": 343
+        "terapie_intensive": 369
     },
     {
         "nome": "Sardegna",
         "codice": 20,
-        "terapie_intensive": 152
+        "terapie_intensive": 180
     },
     {
         "nome": "Sicilia",
         "codice": 19,
-        "terapie_intensive": 503
+        "terapie_intensive": 588
     },
     {
         "nome": "Toscana",
         "codice": 9,
-        "terapie_intensive": 385
+        "terapie_intensive": 523
     },
     {
         "nome": "Umbria",
         "codice": 10,
-        "terapie_intensive": 62
+        "terapie_intensive": 101
     },
     {
         "nome": "Valle d'Aosta/Vallée d'Aoste",
         "codice": 2,
-        "terapie_intensive": 18
+        "terapie_intensive": 20
     },
     {
       "nome": "Veneto",
       "codice": 5,
-      "terapie_intensive": 804
+      "terapie_intensive": 1016
     }
   ]
