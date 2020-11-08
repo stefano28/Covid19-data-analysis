@@ -35,3 +35,9 @@ def write_sat(saturations):
     f.write("Name, Value\n")
     for i in saturations:
         f.write(i['name'] + ", " + str(i['saturation']) + "\n")
+
+def write_cap(regions):
+    f = open("AppData/capacities.txt", "w")
+    f.write("Name, Value\n")
+    for i in regions:
+        f.write(i['nome'] + ", " + str(i['terapie_intensive']) + "\n")

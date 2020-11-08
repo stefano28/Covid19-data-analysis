@@ -165,6 +165,3 @@ def draw_chart_4(stats):
         )
     )
     return fig
-
-def draw_datawrapper_1(drawing):
-    print()

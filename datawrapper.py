@@ -26,4 +26,17 @@ def update_sat():
 
 
 def update_cap():
-    print()
+    f = open("AppData/capacities.txt", "rt")
+    url = "https://api.datawrapper.de/v3/charts/2lDyq/data"
+
+
+    headers = {
+        "Authorization": "Bearer aelzLABx3KGEcdGdhk1hBTrypJYTMAkje2xmexNLQm8e5GHAQsVQqneivIFURORK",
+        'content-type': "text/csv"
+    }
+
+    plaintext = f.read()
+    plaintext.encode('utf-8')
+    response = requests.request("PUT", url, headers=headers, data=plaintext)
+
+    publish("2lDyq")

@@ -15,8 +15,8 @@ chart_1 = drawing.draw_chart_1(stats)
 chart_2 = drawing.draw_chart_2(stats)
 chart_3 = drawing.draw_chart_3(stats)
 chart_4 = drawing.draw_chart_4(stats_slope)
+loading.load_capacity()
 loading.load_saturation(region_stats)
-#datawrapper_1 = drawing.draw_datawrapper_1(loading.load_saturation(region_stats))
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = 'Covid19 data analysis' 
@@ -132,7 +132,8 @@ app.layout = html.Div(
                         id= 'datawrapper-dropdown',
                         options=[
                             {'label': 'Saturazione', 'value': 'STI'},
-                            {'label': 'Capacità sulla popolazione', 'value': 'GTI'},
+                            {'label': 'Capacità', 'value': 'CTI'},
+                            {'label': 'Capacità su 100mila abitanti', 'value': 'GTI'},
                         ],
                         searchable=False,
                         value='STI',
@@ -179,6 +180,8 @@ def update_output(value):
     dash.dependencies.Output('main-datawrapper', 'children'),
     [dash.dependencies.Input('datawrapper-dropdown', 'value')])
 def update_output(value):
+    if value == "CTI":
+        return html.Iframe(title="Capacità terapie intensive", style = {'height': '802px','min-width': '100%','border': 'none'}, src=f'https://datawrapper.dwcdn.net/2lDyq/')   
     if value == "STI":
         return html.Iframe(title="Saturazione terapie intensive", style = {'height': '802px','min-width': '100%','border': 'none'}, src=f'https://datawrapper.dwcdn.net/n02gP/')   
     if value == "GTI":
@@ -186,4 +189,4 @@ def update_output(value):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)

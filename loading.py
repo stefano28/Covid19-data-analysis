@@ -69,5 +69,7 @@ def load_saturation(stats):
 
     return total_sat
 
-def load_capacity(stats):
-    print()
+def load_capacity():
+    regions_ic = reading.read_regions_ic()
+    writing.write_cap(regions_ic)
+    datawrapper.update_cap()
