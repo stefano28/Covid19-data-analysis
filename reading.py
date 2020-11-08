@@ -42,7 +42,7 @@ def read_slope():
         'slope_h': [],
         'ins_h': []
     }
-    with open('slope.json') as json_file: 
+    with open('AppData/slope.json') as json_file: 
         data = json.load(json_file)
         for dic in data:
             stats['slope_h'].append(int(dic['slope_h']))
@@ -59,6 +59,6 @@ def read_regions():
         return data
 
 def read_regions_ic():
-    with open('intensive_care.json') as json_file: 
+    with open('AppData/intensive_care.json') as json_file: 
         data = json.load(json_file)
         return data

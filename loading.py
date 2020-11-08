@@ -65,6 +65,9 @@ def load_saturation(stats):
         count +=  1
 
     writing.write_sat(total_sat)
-    datawrapper.update()
+    datawrapper.update_sat()
 
     return total_sat
+
+def load_capacity(stats):
+    print()

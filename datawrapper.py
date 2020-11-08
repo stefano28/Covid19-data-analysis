@@ -1,15 +1,15 @@
 import requests
 
-def publish():
-    url = "https://api.datawrapper.de/v3/charts/n02gP/publish"
+def publish(id):
+    url = "https://api.datawrapper.de/v3/charts/" + id + "/publish"
     headers = {
         "Authorization": "Bearer aelzLABx3KGEcdGdhk1hBTrypJYTMAkje2xmexNLQm8e5GHAQsVQqneivIFURORK"
     }
 
     response = requests.request("POST", url, headers=headers)
 
-def update():
-    f = open("saturations.txt", "rt")
+def update_sat():
+    f = open("AppData/saturations.txt", "rt")
     url = "https://api.datawrapper.de/v3/charts/n02gP/data"
 
 
@@ -22,4 +22,8 @@ def update():
     plaintext.encode('utf-8')
     response = requests.request("PUT", url, headers=headers, data=plaintext)
 
-    publish()
+    publish("n02gP")
+
+
+def update_cap():
+    print()
