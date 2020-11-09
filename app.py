@@ -15,8 +15,6 @@ chart_1 = drawing.draw_chart_1(stats)
 chart_2 = drawing.draw_chart_2(stats)
 chart_3 = drawing.draw_chart_3(stats)
 chart_4 = drawing.draw_chart_4(stats_slope)
-loading.load_capacity()
-loading.load_saturation(region_stats)
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = 'Covid19 data analysis' 
@@ -142,9 +140,13 @@ app.layout = html.Div(
                             'margin-bottom': '2rem'
                         }
                     ),
+                    dbc.Button("Aggiorna", color="primary", id="update_dw", className="mr-1", style={"margin-bottom" : '2rem'}),
                     html.Div(
                         id = 'main-datawrapper'
                     ),
+                    html.Div(
+                        id = "output_btn"
+                    )
                 ]
             ),
             style = {
@@ -155,6 +157,7 @@ app.layout = html.Div(
         )
         ]
     )
+
 
 @app.callback(
     dash.dependencies.Output('main-chart', 'children'),
@@ -186,6 +189,15 @@ def update_output(value):
         return html.Iframe(title="Saturazione terapie intensive", style = {'height': '802px','min-width': '100%','border': 'none'}, src=f'https://datawrapper.dwcdn.net/n02gP/')   
     if value == "GTI":
         return html.Iframe(title="Posti di terapia intensiva ogni 100mila abitanti", style = {'height': '802px','min-width': '100%','border': 'none'}, src=f'https://datawrapper.dwcdn.net/7qNQd/1/')   
+
+
+@app.callback(
+    dash.dependencies.Output("output_btn", "children"), 
+    [dash.dependencies.Input("update_dw", 'n_clicks')]
+)
+def update_dw(n_clicks):
+    loading.load_capacity()
+    loading.load_saturation(region_stats)
 
 
 if __name__ == '__main__':
