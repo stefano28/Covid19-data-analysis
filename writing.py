@@ -1,6 +1,9 @@
 import json 
   
 def write_json(data, filename='AppData/slope.json'): 
+    f = open("AppData/slope.json","w+")
+    f.write("[]")
+    f.close()
     with open(filename,'w') as f: 
         json.dump(data, f, indent=4) 
       
