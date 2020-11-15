@@ -6,10 +6,17 @@
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to nstall dependencies
 
 ```bash
-pip install plotly
-pip install numby
-pip install dash_bootstrap_components
-pip install dash
+sh install.sh
+```
+Or
+
+```bash
+pip install plotly --user
+pip install numpy --user
+pip install dash_bootstrap_components --user
+pip install dash --user
+pip install requests --user
+pip install newspaper --user
 ```
 
 ## Usage
