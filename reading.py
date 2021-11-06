@@ -4,6 +4,7 @@ def read_all():
     stats = {
         'time': [],
         'time_ita': [],
+        'new_positive_cases': [], 
         'intensive_care': [], 
         'hospitalizations': [], 
         'last_total_screening': "", 
@@ -19,6 +20,7 @@ def read_all():
         i = 0
         for dic in data:
             time = dic['data'].split('T')
+            stats['new_positive_cases'].append(int(dic['nuovi_positivi']))
             stats['hospitalizations'].append(int(dic['ricoverati_con_sintomi']))
             stats['intensive_care'].append(int(dic['terapia_intensiva']))
             stats['time'].append(time[0])

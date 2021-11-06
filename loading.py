@@ -73,3 +73,11 @@ def load_capacity():
     regions_ic = reading.read_regions_ic()
     writing.write_cap(regions_ic)
     datawrapper.update_cap()
+
+
+def load_eigth_positive_cases(stats):
+    last_positive_cases = stats['new_positive_cases']
+    cases = []
+    for i in last_positive_cases:
+        cases.append(i)
+    return cases

@@ -6,11 +6,16 @@ import reading
 import drawing
 import components
 import loading
+import RTCalculator
 
 stats = reading.read_all()
 region_stats = reading.read_regions()
-stats_slope = reading.read_slope()
 loading.load()
+try:
+    stats_slope = reading.read_slope()
+except FileNotFoundError:
+    open("AppData/slope.json", 'w').close()
+globalRT = RTCalculator.rki(loading.load_eigth_positive_cases(stats))
 chart_1 = drawing.draw_chart_1(stats)
 chart_2 = drawing.draw_chart_2(stats)
 chart_3 = drawing.draw_chart_3(stats)
@@ -48,7 +53,8 @@ app.layout = html.Div(
                             dbc.Col(dbc.Card(components.card("Positivi su tamponi", str(stats["percetage_screening"]) + "%"), color="dark", inverse=True)),
                             dbc.Col(dbc.Card(components.card("Nuovi positivi", stats["last_positive_cases"]), color="dark", inverse=True)),
                             dbc.Col(dbc.Card(components.card("Nuovi pazienti ricoverati", stats["last_h_var"]), color="dark", inverse=True)),
-                            dbc.Col(dbc.Card(components.card("Nuovi pazienti in terapia intensiva", stats["last_ic_var"]), color="dark", inverse=True))
+                            dbc.Col(dbc.Card(components.card("Nuovi pazienti in terapia intensiva", stats["last_ic_var"]), color="dark", inverse=True)),
+                            dbc.Col(dbc.Card(components.card("Indice RT", str(globalRT)), color="danger", inverse=True)),
 
                         ],
                         className="mb-4",
@@ -201,4 +207,4 @@ def update_dw(n_clicks):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
