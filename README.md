@@ -1,6 +1,5 @@
 # Covid19 data analysis
 
-
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to nstall dependencies
@@ -25,6 +24,12 @@ pip install newspaper --user
 python app.py
 ```
 Go to http://127.0.0.1:8050/ with your browser
+
+## Screens
+<p align="center">
+  <img src="https://raw.githubusercontent.com/stefanoleggio/covid19-data-analysis/master/screens/graphs.png" width="800">
+  <img src="https://raw.githubusercontent.com/stefanoleggio/covid19-data-analysis/master/screens/italy_map.png" width="800">
+</p>
 
 ## Credits
 
